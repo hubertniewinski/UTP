@@ -12,7 +12,6 @@ import java.io.*;
 public class Main {
 
   public static void main(String[] args) throws IOException {
-    /*
     ProgLang pl = null;
     try {
       pl =  new ProgLang(System.getProperty("user.home") + "/Programmers.tsv");
@@ -70,8 +69,6 @@ public class Main {
     } catch (Exception exc) {
       System.out.println(exc);
     }
-
-     */
   }
 
 }

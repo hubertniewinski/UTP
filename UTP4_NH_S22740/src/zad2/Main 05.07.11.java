@@ -6,11 +6,9 @@
 
 package zad2;
 
-
 public class Main {
 
-  public static void main(String[] args)  {
-    /*
+  public static void main(String[] args) {
     CustomersPurchaseSortFind cpsf = new CustomersPurchaseSortFind();
     String fname = System.getProperty("user.home") + "/customers.txt";
     cpsf.readFile(fname);
@@ -22,7 +20,6 @@ public class Main {
     for (String id : custSearch) {
       cpsf.showPurchaseFor(id);
     }
-     */
   }
 
 }

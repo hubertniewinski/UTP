@@ -16,7 +16,6 @@ public class Anagrams {
 
     public Anagrams(String path) {
         try {
-            StringBuilder builder = new StringBuilder();
             Scanner scanner = new Scanner(new File(path));
             while (scanner.hasNext()) {
                 String[] lineWords = scanner.nextLine().split("\\s+");
