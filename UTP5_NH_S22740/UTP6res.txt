@@ -1,0 +1,2 @@
+text in dir 2 (nested in dir1)
+text in dir1
