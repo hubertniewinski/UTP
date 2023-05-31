@@ -21,10 +21,9 @@ public class Main {
       for (String od : odlist) System.out.println(od);
     }
     // --- część bazodanowa
-    String url = "";/*<-- tu należy wpisać URL bazy danych */
+    String url = "jdbc:derby://localhost:1527/offerDB;create=true";
     Database db = new Database(url, travelData);
     db.create();
     db.showGui();
   }
-
 }

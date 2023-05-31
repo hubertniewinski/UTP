@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,7 +34,26 @@ public class TravelData {
     }
 
     public List<String> getOffersDescriptionsList(String locale, String dateFormat) {
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("Common", Helpers.getLocaleFromLanguageTag(locale));
-        return offers.stream().map(x -> x.getDescription(resourceBundle, locale, dateFormat)).collect(Collectors.toList());
+        Locale localization = Helpers.getLocaleFromLanguageTag(locale);
+        ResourceBundle resourceBundle = ResourceBundleProvider.getCommonResourceBundle(localization);
+
+        return offers.stream().map(x -> {
+            SimpleDateFormat dateFormatter = new SimpleDateFormat(dateFormat);
+
+            StringBuilder builder = new StringBuilder();
+            builder.append(x.getContractorTranslatedCountry(localization)).append(" ");
+            builder.append(dateFormatter.format(x.getDepartureDate())).append(" ");
+            builder.append(dateFormatter.format(x.getReturnDate())).append(" ");
+            builder.append(resourceBundle.getString(x.getPlaceKey())).append(" ");
+            DecimalFormat decimalFormatter = (DecimalFormat) NumberFormat.getNumberInstance(localization);
+            builder.append(decimalFormatter.format(x.getPrice())).append(" ");
+            builder.append(x.getCurrency());
+
+            return builder.toString();
+        }).collect(Collectors.toList());
+    }
+
+    public List<Offer> getOffers() {
+        return offers;
     }
 }
